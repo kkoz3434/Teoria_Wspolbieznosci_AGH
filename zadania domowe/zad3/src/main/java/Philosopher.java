@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,12 +14,14 @@ public class Philosopher {
     int rightFork;
     long start;
     long finish;
-    List<Long> time = new ArrayList<Long>();
+    int counter;
+    List<Long> time = new ArrayList<>();
 
-    public Philosopher(int id, int N) {
+    public Philosopher(int id, int N, int counter) {
         this.id = id;
         this.leftFork = id;
         this.rightFork = (id + 1) % N;
+        this.counter = counter;
     }
 
     public void sleep() {
@@ -32,7 +37,8 @@ public class Philosopher {
         try {
             finish = System.currentTimeMillis();
             time.add(finish - start);
-            System.out.println("ID: " + id + " eating after: " + (finish - start));
+            counter--;
+            //System.out.println("ID: " + id + " eating after: " + (finish - start));
             TimeUnit.MILLISECONDS.sleep((int) (random() * (2 - 1) + 1));
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -59,7 +65,7 @@ public class Philosopher {
     }
 
     public void life1(Table table) {
-        while (true) {
+        while (counter > 0) {
             sleep();
             start = System.currentTimeMillis();
             if (getTwoForks(table)) {
@@ -69,14 +75,13 @@ public class Philosopher {
         }
     }
 
-    public boolean askWaiter(Table table){
-        while(true){
-            if(table.waiter.tryAcquire()){
-                if(table.askForForks(id)){
+    public boolean askWaiter(Table table) {
+        while (true) {
+            if (table.waiter.tryAcquire()) {
+                if (table.askForForks(id)) {
                     table.waiter.release();
                     return true;
-                }
-                else{
+                } else {
                     table.waiter.release();
                 }
             }
@@ -84,7 +89,7 @@ public class Philosopher {
     }
 
     public void life2(Table table) {
-        while (true) {
+        while (counter > 0) {
             sleep();
             start = System.currentTimeMillis();
             if (askWaiter(table)) {
@@ -94,4 +99,14 @@ public class Philosopher {
         }
     }
 
+    public void writeData(FileWriter file) {
+        try {
+            for (var i :
+                    time) {
+                file.write(id + " " + i+'\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
