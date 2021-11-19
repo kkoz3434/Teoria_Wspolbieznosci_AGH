@@ -65,7 +65,9 @@ if __name__ == '__main__':
     make_D_array()
     make_I_array()
 
+    ## printing for debugging
     print("A=", A)
     print("w=", word)
     print("D=",D)
     print("I=", I)
+
