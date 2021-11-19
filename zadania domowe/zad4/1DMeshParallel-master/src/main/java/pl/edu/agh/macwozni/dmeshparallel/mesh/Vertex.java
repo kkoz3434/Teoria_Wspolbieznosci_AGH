@@ -11,7 +11,7 @@ public class Vertex {
     Vertex mLower;
 
     //methods for adding links
-    public Vertex(Vertex _left, Vertex _right, String _lab, Vertex mUpper, Vertex mLower) {
+    public Vertex(Vertex _left, Vertex _right, Vertex mUpper, Vertex mLower, String _lab) {
         this.mLeft = _left;
         this.mRight = _right;
         this.mLabel = _lab;
@@ -21,6 +21,22 @@ public class Vertex {
 
     //empty constructor
     public Vertex() {
+    }
+
+    public String toString() {
+        String res = "";
+        if (this.mLeft != null) {
+            res += "-";
+        } else {
+            res += " ";
+        }
+        res += "M";
+        if (this.mRight != null) {
+            res += "-";
+        } else {
+            res += " ";
+        }
+        return res;
     }
 
     public void setLeft(Vertex _left) {

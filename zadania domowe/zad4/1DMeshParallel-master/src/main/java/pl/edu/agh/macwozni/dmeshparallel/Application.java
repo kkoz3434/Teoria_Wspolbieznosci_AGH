@@ -8,7 +8,7 @@ class Application {
 
         int N =3;
 
-        Executor e = new Executor(new ConcurentBlockRunner());
+        Executor e = new Executor(new ConcurentBlockRunner(), N);
         e.start();
     }
 }

@@ -1,18 +1,24 @@
 package pl.edu.agh.macwozni.dmeshparallel.production;
 
+import pl.edu.agh.macwozni.dmeshparallel.mesh.Vertex;
 import pl.edu.agh.macwozni.dmeshparallel.parallelism.MyLock;
 
 public abstract class AbstractProduction<P> implements IProduction<P> {
 
     private MyLock lock;
     private final PThread thread = new PThread();
-    private final P obj;
+    private P obj;
     private P result;
-    private final PDrawer<P> drawer;
+    private PDrawer<P> drawer;
+    private int N;
 
     public AbstractProduction(P _obj, PDrawer<P> _drawer) {
         this.obj = _obj;
         this.drawer = _drawer;
+        this.N = N;
+    }
+
+    public AbstractProduction(Vertex obj) {
     }
 
     @Override
@@ -20,7 +26,7 @@ public abstract class AbstractProduction<P> implements IProduction<P> {
         return this.result;
     }
 
-//run the thread
+    //run the thread
     @Override
     public void start() {
         thread.start();
@@ -42,7 +48,7 @@ public abstract class AbstractProduction<P> implements IProduction<P> {
         public void run() {
             lock.lock();
             result = apply(obj);
-            drawer.draw(result);
+            drawer.draw(result, N);
         }
     }
 }
