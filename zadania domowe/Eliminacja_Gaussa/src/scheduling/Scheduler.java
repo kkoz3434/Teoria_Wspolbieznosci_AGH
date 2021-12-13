@@ -56,13 +56,13 @@ public class Scheduler {
 
     private void prepareMatrix() {
         if (matrix == null) {
-            double[][] fromFile = null;
+            double[][] fromFile;
             try {
                 fromFile = PrepareMatrixService.loadfromFile(filename);
                 System.out.println("Readed from file:");
-                for (int i = 0; i < fromFile.length; i++) {
+                for (double[] doubles : fromFile) {
                     for (int j = 0; j < fromFile[0].length; j++) {
-                        System.out.print(fromFile[i][j] + " ");
+                        System.out.print(doubles[j] + " ");
                     }
                     System.out.println();
                 }
