@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.Scanner;
 
 public class PrepareMatrixService {
+    /**
+     *  Service to deal with file operations: Reading and Writing
+     */
+
     public static double[][] loadfromFile(String path) throws FileNotFoundException {
             Scanner input = new Scanner(new BufferedReader(new FileReader(path)));
             int N = Integer.parseInt(input.nextLine());

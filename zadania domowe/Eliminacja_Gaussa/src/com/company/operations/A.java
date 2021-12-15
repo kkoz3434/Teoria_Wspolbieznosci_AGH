@@ -5,6 +5,13 @@ public class A implements Operation{
     int k;
     double[][] matrix;
     double[][] m;
+
+    /**
+     * @param i diagonal
+     * @param k row to substract
+     * @param matrix matrix NxN+1
+     * @param m array of factors
+     */
     public A(int i, int k, double[][] matrix, double[][] m){
         this.i = i;
         this.k = k;

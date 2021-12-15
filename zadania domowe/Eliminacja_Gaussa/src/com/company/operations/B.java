@@ -8,6 +8,15 @@ public class B implements Operation {
     double[][] m;
     double[][][] n;
 
+    /**
+     * @param i diagonal
+     * @param k row to substract
+     * @param matrix matrix NxN+1
+     * @param m array of factors
+     * @param n 3D array of numbers after multiplification
+     * @param j column index
+     */
+
     public B(int i, int k, int j, double[][] matrix, double[][] m,double[][][] n) {
         this.i = i;
         this.k = k;

@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class Main {
     /***
-     * Program does Gaussian Elimination concurrently, using Foaty normal form.
+     * Program does Gaussian Elimination concurrently, using Foaty normal form
      *
      */
 
@@ -17,11 +17,5 @@ public class Main {
             Scheduler scheduler = new Scheduler("matrix"+i+".txt" , true);
             scheduler.execute();
         }
-
-
-
-        //Scheduler scheduler = new Scheduler("matrix3.txt" , false);
-        //scheduler.execute();
-
     }
 }
