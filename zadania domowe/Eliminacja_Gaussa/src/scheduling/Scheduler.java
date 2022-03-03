@@ -19,6 +19,7 @@ public class Scheduler {
     String filename;
     int N;
     boolean isSilent;
+
     /***
     * Scheduler is main Class in this program: preparing matrix, making FNF and execute Gaussian Elimination.
      * isSilent: makes execution silent: on console appears only matrix red from file
